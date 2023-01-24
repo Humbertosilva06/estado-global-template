@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { handleHome } from "../Router/cordinator";
 import styled from "styled-components";
 
-export default function Cadastro (props){
+export default function Cadastro ({frutas, setFrutas}){
   const[formulario, setFormulario]=useState({name:"", url:"", price:""})
   const navigate = useNavigate();
 
@@ -14,9 +14,15 @@ export default function Cadastro (props){
   const handleClick = (event)=>{
     event.preventDefault()
     console.log(formulario);
+    cadastrar()
   }
  
- 
+  //F-3 fazemos a função de cadastrar nova fruta e chamamos ela dentro da função handle click
+  const cadastrar = ()=>{
+    const novasFrutas = [...frutas, {id:Date.now(), name: formulario.name, url:formulario.url, price:formulario.price}]
+    setFrutas(novasFrutas)
+
+  }
   return(
     <CadastroContainer>
       <h1>Cadastro</h1>
